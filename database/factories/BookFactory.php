@@ -26,7 +26,8 @@ class BookFactory extends Factory
                 fake()->title() . 
                 " " . 
                 fake()->unique()->colorName(),
-            'author_id' => Author::factory(),
+            'summary' => fake()->text(250),
+            'author_id' => Author::factory(),   
         ];
     }
 }

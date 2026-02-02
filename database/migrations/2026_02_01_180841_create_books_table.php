@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\Author::class)->constrained()->cascadeOnDelete();
             $table->string('title')->unique();
+            $table->text('summary');
             $table->timestamps();
         });
     }
