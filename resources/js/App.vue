@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link :to="{name: 'books.overview'}">View All Books</router-link> |
-    <router-link :to="{name: 'books.create'}">Add New Book</router-link> | 
-    <router-link :to="{name: 'authors.overview'}">View All Authors</router-link>
+    <RouterLink :to="{ name: 'books.overview' }">View All Books</RouterLink> |
+    <RouterLink :to="{ name: 'books.create' }">Add New Book</RouterLink> | 
+    <RouterLink :to="{ name: 'authors.overview' }">View All Authors</RouterLink>
   </nav>
-  <router-view></router-view>
-</template>
+  <RouterView />
+</template> 
