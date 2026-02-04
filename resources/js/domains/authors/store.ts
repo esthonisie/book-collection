@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { deleteRequest, getRequest, postRequest, putRequest } from '../../services/http';
 import { ref, computed } from 'vue';
 import type { Author } from './types';
 
@@ -7,25 +7,25 @@ const authors = ref<Author[]>([]);
 
 // actions
 export const fetchAuthors = async () => {
-	const {data} = await axios.get('/api/authors');
+	const {data} = await getRequest('/authors');
 	if(!data) return
 	authors.value = data;
 };
 
 export const createAuthor = async (newAuthor: Author) => {
-	const {data} = await axios.post('/api/authors', newAuthor);
+	const {data} = await postRequest('/authors', newAuthor);
 	if(!data) return
 	authors.value = data;
 };
 
 export const updateAuthor = async (id: number, updatedAuthor: Author) => {
-	const { data } = await axios.put(`/api/authors/${id}`, updatedAuthor);
+	const { data } = await putRequest(`/authors/${id}`, updatedAuthor);
 	if (!data) return;
 	authors.value = data;
 };
 
 export const deleteAuthor = async (id: number) => {
-	await axios.delete(`/api/authors/${id}`);
+	await deleteRequest(`/authors/${id}`);
 	authors.value = authors.value.filter(author => author.id !== id);
 };
 
