@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import type { Author } from './types';
 
 // state
-const authors = ref([]);
+const authors = ref<Author[]>([]);
 
 // actions
 export const fetchAuthors = async () => {
@@ -12,5 +12,23 @@ export const fetchAuthors = async () => {
 	authors.value = data;
 };
 
+export const createAuthor = async (newAuthor: Author) => {
+	const {data} = await axios.post('/api/authors', newAuthor);
+	if(!data) return
+	authors.value = data;
+};
+
+export const updateAuthor = async (id: number, updatedAuthor: Author) => {
+	const { data } = await axios.put(`/api/authors/${id}`, updatedAuthor);
+	if (!data) return;
+	authors.value = data;
+};
+
+export const deleteAuthor = async (id: number) => {
+	await axios.delete(`/api/authors/${id}`);
+	authors.value = authors.value.filter(author => author.id !== id);
+};
+
 // getters
 export const getAllAuthors = computed<Author[]>(() => authors.value);
+export const getAuthorById = (id: number) => computed(() => authors.value.find(author => author.id === id));
