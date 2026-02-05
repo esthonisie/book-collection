@@ -1,16 +1,13 @@
 <script lang=ts setup>
 import { useRoute, useRouter } from 'vue-router';
 import Form from '../components/Form.vue';
-import { fetchAuthors, getAuthorById, updateAuthor } from '../store';
+import { getAuthorById, updateAuthor } from '../store';
 import type { Author } from '../types';
 
-const route = useRoute();
 const router = useRouter();
 
+const route = useRoute();
 const authorId = parseInt(route.params.id as string);
-
-fetchAuthors();
-
 const author = getAuthorById(authorId);
 
 const handleSubmit = async (data: Author) => {
