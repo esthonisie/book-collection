@@ -1,4 +1,4 @@
-import { storeModuleFactory } from '../../services/store';
+import { storeModuleFactory } from '@/services/store';
 import type { Book } from './types';
 
 // state
