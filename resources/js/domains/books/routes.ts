@@ -1,4 +1,5 @@
 import Overview from './pages/Overview.vue';
+import Show from './pages/Show.vue';
 import Create from './pages/Create.vue';
 import Edit from './pages/Edit.vue';
 
@@ -7,6 +8,11 @@ export const bookRoutes =  [
 		path: '/books', 
 		component: Overview, 
 		name: 'books.overview' 
+	},
+	{ 
+		path: '/books/:id', 
+		component: Show, 
+		name: 'books.show' 
 	},
 	{ 
 		path: '/books/create', 

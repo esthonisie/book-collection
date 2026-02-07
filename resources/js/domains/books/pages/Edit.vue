@@ -1,8 +1,10 @@
 <script lang=ts setup>
 import { useRoute, useRouter } from 'vue-router';
 import Form from '../components/Form.vue';
-import { getBookById, updateBook } from '../store';
+import { fetchBooks, getBookById, updateBook } from '../store';
 import type { Book } from '../types';
+
+fetchBooks();
 
 const router = useRouter();
 

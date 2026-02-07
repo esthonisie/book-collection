@@ -14,12 +14,14 @@ fetchBooks();
 				<th>Summary</th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr v-for="book in getAllBooks" :key="book.id">
 				<td>{{ book.title }}</td>
 				<td>{{ book.summary }}</td>
+				<td><RouterLink :to="{ name: 'books.show', params: { id: book.id } }">Show Book</RouterLink></td>
 				<td><RouterLink :to="{ name: 'books.edit', params: { id: book.id } }">Edit</RouterLink></td>
 				<td><button @click="deleteBook(book.id)">Delete</button></td>
 			</tr>
