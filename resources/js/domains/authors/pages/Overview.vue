@@ -1,7 +1,5 @@
 <script setup>
-import { fetchAuthors } from '../store';
-import { getAllAuthors } from '../store';
-import { deleteAuthor } from '../store';
+import { fetchAuthors, getAllAuthors, deleteAuthor } from '../store';
 
 fetchAuthors();
 </script>

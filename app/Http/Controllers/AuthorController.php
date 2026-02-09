@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Http\Resources\AuthorResource;
 use App\Http\Requests\StoreAuthorRequest;
@@ -18,6 +17,11 @@ class AuthorController extends Controller
 
         $authors = Author::all();
         return AuthorResource::collection($authors);
+    }
+
+    public function show(Author $author)
+    {
+        return new AuthorResource($author);
     }
 
     public function update(StoreAuthorRequest $request, Author $author) {

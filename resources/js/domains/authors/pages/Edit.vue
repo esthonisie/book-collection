@@ -1,7 +1,7 @@
 <script lang=ts setup>
 import { useRoute, useRouter } from 'vue-router';
 import Form from '../components/Form.vue';
-import { getAuthorById, updateAuthor } from '../store';
+import { fetchAuthor, getAuthorById, updateAuthor } from '../store';
 import type { Author } from '../types';
 
 const router = useRouter();
@@ -9,6 +9,8 @@ const router = useRouter();
 const route = useRoute();
 const authorId = parseInt(route.params.id as string);
 const author = getAuthorById(authorId);
+
+fetchAuthor(authorId);
 
 const handleSubmit = async (data: Author) => {
   await updateAuthor(authorId, data);
