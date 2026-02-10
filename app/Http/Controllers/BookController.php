@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Resources\BookResource;
 use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -24,7 +25,7 @@ class BookController extends Controller
         return new BookResource($book);
     }
 
-    public function update(StoreBookRequest $request, Book $book) {
+    public function update(UpdateBookRequest $request, Book $book) {
         $book->update($request->validated());
 
         $books = Book::all();

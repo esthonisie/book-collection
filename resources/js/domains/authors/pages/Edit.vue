@@ -13,8 +13,12 @@ const author = getAuthorById(authorId);
 fetchAuthor(authorId);
 
 const handleSubmit = async (data: Author) => {
-  await updateAuthor(authorId, data);
-  router.push({ name: 'authors.overview' });
+	try {
+		await updateAuthor(authorId, data);
+    router.push({ name: 'authors.overview' });
+	} catch(error) {
+		console.log('Error: ' + error);
+	}
 };
 </script>
 

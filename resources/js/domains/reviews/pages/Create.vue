@@ -16,8 +16,12 @@ const review = ref({
 });
 
 const handleSubmit = async (data: Review) => {
-	await createReview(data);
-	router.back();
+	try {
+		await createReview(data);
+		router.back();
+	} catch(error) {
+		console.log('Error: ' + error);
+	}
 };
 </script>
 

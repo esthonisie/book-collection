@@ -13,8 +13,12 @@ const review = getReviewById(reviewId);
 fetchReview(reviewId);
 
 const handleSubmit = async (data: Review) => {
-  await updateReview(reviewId, data);
-  router.back();
+	try {
+		await updateReview(reviewId, data);
+    router.back();
+	} catch(error) {
+		console.log('Error: ' + error);
+	}
 };
 </script>
 

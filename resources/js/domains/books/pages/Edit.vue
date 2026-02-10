@@ -13,8 +13,12 @@ const book = getBookById(bookId);
 fetchBook(bookId);
 
 const handleSubmit = async (data: Book) => {
-  await updateBook(bookId, data);
-  router.push({ name: 'books.overview' });
+	try {
+		await updateBook(bookId, data);
+    router.push({ name: 'books.overview' });
+	} catch(error) {
+		console.log('Error: ' + error);
+	}
 };
 </script>
 

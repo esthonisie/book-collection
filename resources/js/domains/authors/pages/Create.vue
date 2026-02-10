@@ -3,7 +3,12 @@ import Form from '../components/Form.vue';
 import { createAuthor } from '../store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { destroyMessage, destroyErrors } from '@/services/error'; 
 import type { Author } from '../types';
+
+// reset general error message and errorbag message
+destroyMessage();
+destroyErrors();
 
 const router = useRouter();
 
@@ -13,8 +18,12 @@ const author = ref({
 });
 
 const handleSubmit = async (data: Author) => {
-	await createAuthor(data);
-	router.push({name: 'authors.overview'});
+	try {
+		await createAuthor(data);
+		router.push({name: 'authors.overview'});
+	} catch(error) {
+		console.log('Error: ' + error);
+	}
 };
 </script>
 

@@ -14,8 +14,12 @@ const book = ref({
 });
 
 const handleSubmit = async (data: Book) => {
-	await createBook(data);
-	router.push({name: 'books.overview'});
+	try {
+		await createBook(data);
+		router.push({name: 'books.overview'});
+	} catch(error) {
+		console.log('Error: ' + error);
+	}
 };
 </script>
 
