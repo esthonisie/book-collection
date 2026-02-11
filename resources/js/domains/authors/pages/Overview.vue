@@ -5,8 +5,8 @@ import ErrorMessage from '@/services/error/ErrorMessage.vue';
 const submitDelete = async (authorId: number) => {
 	try {
 		await deleteAuthor(authorId);
-	} catch(e) {
-
+	} catch(error) {
+		console.log('Error: ' + error);
 	}
 }
 

@@ -22,7 +22,7 @@ class BaseFormRequest extends FormRequest
     {
         throw new HttpResponseException(new JsonResponse([
             'errors' => $validator->errors(),
-            'message' => 'De ingevoerde gegevens zijn niet juist.',
+            'message' => 'Sorry, the given information is not correct.',
         ], 422));
     }
 }

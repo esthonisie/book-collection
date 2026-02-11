@@ -18,7 +18,7 @@ const review = ref({
 const handleSubmit = async (data: Review) => {
 	try {
 		await createReview(data);
-		router.back();
+		router.push({name: 'books.show', params: { id: bookId }});
 	} catch(error) {
 		console.log('Error: ' + error);
 	}

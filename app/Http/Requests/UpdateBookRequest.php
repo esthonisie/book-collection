@@ -23,7 +23,7 @@ class UpdateBookRequest extends BaseFormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'summary' => 'required|string|min:15',
+            'summary' => 'required|string|min:15|max:5000',
             'author_id' => 'required|exists:authors,id'
         ];
     }

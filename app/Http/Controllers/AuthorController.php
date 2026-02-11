@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
-use App\Http\Resources\AuthorResource;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
+use App\Http\Resources\AuthorResource;
+use App\Models\Author;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AuthorController extends Controller
@@ -15,31 +16,29 @@ class AuthorController extends Controller
     }
 
     public function store(StoreAuthorRequest $request) {
-        $author = Author::create($request->validated());
+        Author::create($request->validated());
 
-        $authors = Author::all();
-        return AuthorResource::collection($authors);
+        return AuthorResource::collection(Author::all());
     }
 
-    public function show(Author $author)
-    {
+    public function show(Author $author) {
         return new AuthorResource($author);
     }
 
     public function update(UpdateAuthorRequest $request, Author $author) {
         $author->update($request->validated());
 
-        $authors = Author::all();
-        return AuthorResource::collection($authors);
+        return AuthorResource::collection(Author::all());
     }
 
     public function destroy(Author $author) {
         if ($author->books()->exists()) {
             throw new HttpResponseException(response()->json([
-                'message' => 'Deze auteur kan niet worden verwijderd omdat er nog boeken aan gekoppeld zijn.'
+                'message' => 'Sorry, an author with books in the database cannot be deleted.'
             ], 422));
         }
 
         $author->delete();
+        return response()->json(['message' => 'Author deleted with success']);
     }
 }

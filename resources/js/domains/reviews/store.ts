@@ -1,20 +1,18 @@
 import { storeModuleFactory } from '@/services/store';
+import { getRequest } from '@/services/http';
 import type { Review } from './types';
 
-// state
 const reviewStore = storeModuleFactory('reviews');
 
 // actions
-export const fetchReviews = async () => {
-	await reviewStore.actions.getAll();
-};
-
-export const fetchBookReviews = async (parent: string, parentId: number) => {
-	await reviewStore.actions.getRelation(parent, parentId);
+export const fetchReviews = async (bookId: number) => {
+	const { data } = await getRequest(`/books/${bookId}/reviews`);
+	if (!data) return;
+	reviewStore.setters.setAll(data);
 };
 
 export const fetchReview = async (id: number) => {
-	await reviewStore.actions.getOne(id);
+	await reviewStore.actions.getById(id);
 };
 
 export const createReview = async (newReview: Review) => {

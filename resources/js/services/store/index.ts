@@ -13,6 +13,9 @@ export const storeModuleFactory = (moduleName: string) => {
     setAll: (items) => {
       for (const item of items) state.value[item.id] = Object.freeze(item);
     },
+    setById: (item) => {
+      state.value[item.id] = Object.freeze(item);
+    },
     deleteByItem: (item) => {
       delete state.value[item];
     }
@@ -24,17 +27,10 @@ export const storeModuleFactory = (moduleName: string) => {
       if (!data) return;
       setters.setAll(data);
     },
-    getRelation: async (parentName: string, parentId: number) => {
-      state.value = {};
-      const { data } = await getRequest(`${parentName}/${parentId}/${moduleName}`);
-      if (!data) return;
-      setters.setAll(data);
-    },
-    getOne: async (id: number) => {
+    getById: async (id: number) => {
       const { data } = await getRequest(`${moduleName}/${id}`);
       if (!data) return;
-      const dataToArr = Array(data);
-      setters.setAll(dataToArr);
+      setters.setById(data);
     },
     create: async (item) => {
       const { data } = await postRequest(moduleName, item);

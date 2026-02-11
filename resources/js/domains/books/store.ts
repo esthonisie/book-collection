@@ -1,7 +1,6 @@
 import { storeModuleFactory } from '@/services/store';
 import type { Book } from './types';
 
-// state
 const bookStore = storeModuleFactory('books');
 
 // actions
@@ -10,7 +9,7 @@ export const fetchBooks = async () => {
 };
 
 export const fetchBook = async (id: number) => {
-	await bookStore.actions.getOne(id);
+	await bookStore.actions.getById(id);
 };
 
 export const createBook = async (newBook: Book) => {

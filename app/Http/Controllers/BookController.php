@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Http\Resources\BookResource;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Http\Resources\BookResource;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -14,10 +15,9 @@ class BookController extends Controller
     }
 
     public function store(StoreBookRequest $request) {
-        $book = Book::create($request->validated());
+        Book::create($request->validated());
 
-        $books = Book::all();
-        return BookResource::collection($books);
+        return BookResource::collection(Book::all());
     }
 
     public function show(Book $book)
@@ -28,8 +28,7 @@ class BookController extends Controller
     public function update(UpdateBookRequest $request, Book $book) {
         $book->update($request->validated());
 
-        $books = Book::all();
-        return BookResource::collection($books);
+        return BookResource::collection(Book::all());
     }
 
     public function destroy(Book $book) {

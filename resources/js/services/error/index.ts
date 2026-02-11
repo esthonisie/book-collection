@@ -14,7 +14,7 @@ export const getErrorByProperty = (property: string) => computed(() => errorBag.
 
 export const setErrorBag = (bag: ErrorBag) => (errorBag.value = bag);
 export const setMessage = (newMessage: string) => {
-  message.value = newMessage || 'Er is een fout opgetreden.';
+  message.value = newMessage || 'Sorry, something went wrong.';
 };
 
 export const destroyErrors = () => (errorBag.value = {});

@@ -15,7 +15,7 @@ fetchReview(reviewId);
 const handleSubmit = async (data: Review) => {
 	try {
 		await updateReview(reviewId, data);
-    router.back();
+    router.push({name: 'books.show', params: { id: review.value.book_id }});
 	} catch(error) {
 		console.log('Error: ' + error);
 	}

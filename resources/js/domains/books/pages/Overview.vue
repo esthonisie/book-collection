@@ -1,7 +1,5 @@
 <script setup>
-import { fetchBooks } from '../store';
-import { getAllBooks } from '../store';
-import { deleteBook } from '../store';
+import { fetchBooks, getAllBooks, deleteBook } from '../store';
 
 fetchBooks();
 </script>
