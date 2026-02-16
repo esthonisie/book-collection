@@ -1,28 +1,73 @@
-<script setup>
+<script setup lang="ts">
 import { fetchBooks, getAllBooks, deleteBook } from '../store';
+import { sortByProperty } from '@/helpers/stateObject';
+import { shortenSummary } from '@/helpers/books';
 
 fetchBooks();
 </script>
 
 <template>
-	<table>
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Summary</th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr v-for="book in getAllBooks" :key="book.id">
-				<td>{{ book.title }}</td>
-				<td>{{ book.summary }}</td>
-				<td><RouterLink :to="{ name: 'books.show', params: { id: book.id } }">Show Book</RouterLink></td>
-				<td><RouterLink :to="{ name: 'books.edit', params: { id: book.id } }">Edit</RouterLink></td>
-				<td><button @click="deleteBook(book.id)">Delete</button></td>
-			</tr>
-		</tbody>
-	</table>
+<div class="main-container">
+	<div class="book-container" v-for="book in sortByProperty(getAllBooks, 'title')" :key="book.id">
+		<div>
+			<div class="title">{{ book.title }}</div>
+			<div class="written-by">written by:</div>
+			<div class="author">{{ book.author }}</div>
+			<hr>
+			<div class="summary">{{ shortenSummary(book.summary) }}</div>
+			<RouterLink :to="{ name: 'books.show', params: { id: book.id } }">
+				&#8594; info &#38; reviews
+			</RouterLink>
+		</div>
+		<RouterLink :to="{ name: 'books.edit', params: { id: book.id } }" class="edit-link">Edit</RouterLink>
+		<div @click="deleteBook(book.id)" class="delete-link">x</div>
+	</div>
+</div>
 </template>
+
+<style scoped>
+.main-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	width: 100%;
+	gap: 14px;
+}
+.book-container {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	border: 1px solid black;
+	min-height: fit-content;
+	padding: 20px;
+}
+
+.delete-link {
+	position: absolute;
+	top: -6px;
+	right: 4px;
+	cursor: pointer;
+}
+
+.edit-link {
+	position: absolute;
+	top: -2px;
+	left: 4px;
+}
+
+/* .title {
+
+}
+
+.written-by {
+
+}
+
+.author {
+ 
+}
+
+a {
+  
+} */
+</style>

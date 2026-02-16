@@ -18,6 +18,8 @@ class ReviewResource extends JsonResource
             'id' => $this->id,
             'book_id' =>$this->book_id,
             'body' => $this->body,
+            'username' => $this->username,
+            'created_at' => $this->created_at->format('F j, Y'),
         ];
     }
 }

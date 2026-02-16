@@ -13,13 +13,45 @@ const handleSubmit = () => emit('submit', form.value);
 </script>
 
 <template>
-  <ErrorMessage />
+<form @submit.prevent="handleSubmit">
+  <div class="error"><ErrorMessage /></div>
 
-  <form @submit.prevent="handleSubmit">
-    <label for="body">Your Review:</label>
-    <textarea id="body" v-model="form.body" required></textarea>
-    <FormError name="body" />
+  <label for="body">Your Review:</label>
+  <textarea id="body" v-model="form.body" required></textarea>
+  <div class="error"><FormError name="body" /></div>
 
-    <button type="submit">Submit</button>
-  </form>
+  <button type="submit"><slot>submit</slot></button>
+</form>
 </template>
+
+<style scoped>
+.error {
+  color:rgb(226, 61, 43);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  padding: 20px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  margin-bottom: 6px;
+}
+
+textarea {
+  padding: 20px;
+  height: 180px;
+}
+
+button {
+  text-align: center;
+  border: 1px solid;
+  width: fit-content;
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+</style>

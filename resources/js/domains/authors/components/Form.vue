@@ -13,17 +13,50 @@ const handleSubmit = () => emit('submit', form.value);
 </script>
 
 <template>
-  <ErrorMessage />
 
-  <form @submit.prevent="handleSubmit">
-    <label for="first_name">First Name:</label>
-    <input id="first_name" v-model="form.first_name" type="text" required />
-    <FormError name="first_name" />
+<form @submit.prevent="handleSubmit">
+  <div class="error"><ErrorMessage /></div>
 
-    <label for="last_name">Last Name:</label>
-    <input id="last_name" v-model="form.last_name" type="text" required />
-    <FormError name="last_name" />
+  <label for="first_name">First Name:</label>
+  <input id="first_name" v-model="form.first_name" type="text" required />
+  <div class="error"><FormError name="first_name" /></div>
 
-    <button type="submit">Submit</button>
-  </form>
+  <label for="last_name">Last Name:</label>
+  <input id="last_name" v-model="form.last_name" type="text" required />
+  <div class="error"><FormError name="last_name" /></div>
+
+  <button type="submit"><slot>submit</slot></button>
+</form>
 </template>
+
+<style scoped>
+.error {
+  color:rgb(226, 61, 43);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  padding: 20px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  margin-bottom: 6px;
+}
+
+textarea {
+  padding: 20px;
+  height: 180px;
+}
+
+button {
+  text-align: center;
+  border: 1px solid;
+  width: fit-content;
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+</style>

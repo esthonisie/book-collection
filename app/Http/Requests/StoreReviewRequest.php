@@ -22,8 +22,9 @@ class StoreReviewRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'body' => 'required|string|min:10|max:5000',
-            'book_id' => 'required|exists:books,id'
+            'body' => 'required|string|min:30|max:5000',
+            'book_id' => 'required|exists:books,id',
+            'username' => 'string',
         ];
     }
 }

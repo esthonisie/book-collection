@@ -17,7 +17,7 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-         return [
+        return [
             'title' => 
                 "The " . 
                 fake()->randomElement(["Extraordinary ", "Boring ", "Miserable ", "Unusual ", "Extraterrestrial "]) .
@@ -26,7 +26,7 @@ class BookFactory extends Factory
                 fake()->title() . 
                 " " . 
                 fake()->unique()->colorName(),
-            'summary' => fake()->text(250),
+            'summary' => fake()->realTextBetween(250, 600),
             'author_id' => Author::factory(),   
         ];
     }

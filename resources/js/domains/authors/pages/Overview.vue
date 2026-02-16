@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { fetchAuthors, getAllAuthors, deleteAuthor } from '../store';
 import ErrorMessage from '@/services/error/ErrorMessage.vue';
+import { sortByProperty } from '@/helpers/stateObject';
 
 const submitDelete = async (authorId: number) => {
 	try {
@@ -14,21 +15,17 @@ fetchAuthors();
 </script>
 
 <template>
-	<ErrorMessage />
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr v-for="author in getAllAuthors" :key="author.id">
-				<td>{{ author.name }}</td>
-				<td><RouterLink :to="{ name: 'authors.edit', params: { id: author.id } }">Edit</RouterLink></td>
-				<td><button @click="submitDelete(author.id)">Delete</button></td>
-			</tr>
-		</tbody>
-	</table>
+<ErrorMessage />
+<ul v-for="author in sortByProperty(getAllAuthors, 'last_name')" :key="author.id">
+	<li>
+		<div>
+			{{ author.name }}
+			<RouterLink :to="{ name: 'authors.edit', params: { id: author.id } }">Edit</RouterLink> |
+			<button @click="submitDelete(author.id)">Delete</button>
+		</div>
+		<ul v-for="book in author.books" :key="book.id">
+			<li><RouterLink :to="{ name: 'books.show', params: { id: book.id } }">{{ book.title }}</RouterLink></li>
+		</ul>
+	</li>
+</ul>
 </template>

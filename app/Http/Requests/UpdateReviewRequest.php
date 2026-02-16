@@ -22,7 +22,7 @@ class UpdateReviewRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'body' => 'required|string|min:10|max:5000',
+            'body' => 'required|string|min:30|max:5000',
         ];
     }
 }

@@ -10,10 +10,6 @@ export const bookRoutes =  [
 		name: 'books.overview' 
 	},
 	{ 
-		path: '/', 
-		redirect: '/books'
-	},
-	{ 
 		path: '/books/:id', 
 		component: Show, 
 		name: 'books.show' 

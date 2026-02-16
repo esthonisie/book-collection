@@ -18,8 +18,13 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'body' => fake()->realText(600),
+            'body' => fake()->text(250),
             'book_id' => Book::factory(),
+            'username' => fake()->randomElement(['Captain Flint', 'Long John Silver', 
+                'Hornblower', 'Mr. Darcy', 'Elizabeth Bennet', 'Herman Toothrot', 
+                'Mr. Rochester', 'Jane Eyre','Elaine Marley', 'Guybrush Threepwood', 
+                'Fester Shinetop', 'the Dude', 'the Queen']),
+            'created_at' => fake()->unique()->dateTimeThisYear()->format('Y-m-d H:i:s'),
         ];
     }
 }

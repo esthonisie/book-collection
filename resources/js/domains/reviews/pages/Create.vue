@@ -1,5 +1,6 @@
 <script lang=ts setup>
 import Form from '../components/Form.vue';
+import { userName } from '@/helpers/reviews';
 import { createReview } from '../store';
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
@@ -13,6 +14,7 @@ const bookId = parseInt(route.params.id as string);
 const review = ref({
 	body: '',
 	book_id: `${bookId}`,
+	username: userName(),
 });
 
 const handleSubmit = async (data: Review) => {
@@ -23,11 +25,12 @@ const handleSubmit = async (data: Review) => {
 		console.log('Error: ' + error);
 	}
 };
+
+const btnText = "Add Review";
 </script>
 
 <template>
-	<div>
-		<h2>Add a New Review</h2>
-		<Form :review="review" @submit="handleSubmit"></Form>
-	</div>
+<div>
+	<Form :review="review" @submit="handleSubmit">{{ btnText }}</Form>
+</div>
 </template>

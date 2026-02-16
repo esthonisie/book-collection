@@ -20,11 +20,13 @@ const handleSubmit = async (data: Review) => {
 		console.log('Error: ' + error);
 	}
 };
+
+const btnText = "Edit Review";
 </script>
 
 <template>
-  <div>
-    <h2>Edit Review</h2>
-    <Form v-if="review" :review="review" @submit="handleSubmit"></Form>
-  </div>
+<div>
+  <h2>Edit Review</h2>
+  <Form v-if="review" :review="review" @submit="handleSubmit">{{ btnText }}</Form>
+</div>
 </template>

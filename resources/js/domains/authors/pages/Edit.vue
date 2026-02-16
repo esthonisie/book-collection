@@ -20,11 +20,12 @@ const handleSubmit = async (data: Author) => {
 		console.log('Error: ' + error);
 	}
 };
+
+const btnText = "Edit Author";
 </script>
 
 <template>
-  <div>
-    <h2>Edit Author</h2>
-    <Form v-if="author" :author="author" @submit="handleSubmit"></Form>
-  </div>
+<div>
+  <Form v-if="author" :author="author" @submit="handleSubmit">{{ btnText }}</Form>
+</div>
 </template>
