@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { fetchBook, getBookById } from '../store';
+import { fetchBooks, getBookById, getAllBooks } from '../store';
 import { getAllReviews, fetchReviews, deleteReview } from '@/domains/reviews/store';
-import { filterByProperty } from '@/helpers/stateObject';
+import { isObjectEmpty, filterByProperty } from '@/helpers/stateObject';
 import { sortByIdDesc } from '@/helpers/reviews';
 import { useRoute } from 'vue-router';
+
+isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
+isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 
 const route = useRoute();
 const bookId = parseInt(route.params.id as string);
 const book = getBookById(bookId);
-
-fetchBook(bookId);
-fetchReviews(bookId);
 
 const sortReviews = (reviewsObj, propBookId, bookId, propId) => {
   const arr = filterByProperty(reviewsObj, propBookId, bookId);

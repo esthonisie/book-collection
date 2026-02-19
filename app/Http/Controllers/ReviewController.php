@@ -6,20 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 use App\Http\Resources\ReviewResource;
-use App\Models\Book;
 use App\Models\Review;
 
-class BookReviewController extends Controller
+class ReviewController extends Controller
 {
-    public function index(Book $book) {
-        return ReviewResource::collection($book->reviews);
+    public function index() {
+        return ReviewResource::collection(Review::all());
     }
 
     public function store(StoreReviewRequest $request) {
-        $review = Review::create($request->validated());
+        Review::create($request->validated());
 
-        $book = Book::find($review->book_id);
-        return ReviewResource::collection($book->reviews);
+        return ReviewResource::collection(Review::all());
     }
 
     public function show(Review $review) {
@@ -29,8 +27,7 @@ class BookReviewController extends Controller
     public function update(UpdateReviewRequest $request, Review $review) {
         $review->update($request->validated());
 
-        $book = Book::find($review->book_id);
-        return ReviewResource::collection($book->reviews);
+        return ReviewResource::collection(Review::all());
     }
 
     public function destroy(Review $review) {

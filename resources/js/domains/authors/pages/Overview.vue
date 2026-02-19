@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { fetchAuthors, getAllAuthors, deleteAuthor } from '../store';
+import { fetchBooks, getAllBooks } from '@/domains/books/store';
 import ErrorMessage from '@/services/error/ErrorMessage.vue';
-import { sortByProperty } from '@/helpers/stateObject';
+import { isObjectEmpty, sortByProperty, filterByProperty } from '@/helpers/stateObject';
+
+isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
+isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
 
 const submitDelete = async (authorId: number) => {
 	try {
@@ -10,8 +14,6 @@ const submitDelete = async (authorId: number) => {
 		console.log('Error: ' + error);
 	}
 }
-
-fetchAuthors();
 </script>
 
 <template>
@@ -23,7 +25,7 @@ fetchAuthors();
 			<RouterLink :to="{ name: 'authors.edit', params: { id: author.id } }">Edit</RouterLink> |
 			<button @click="submitDelete(author.id)">Delete</button>
 		</div>
-		<ul v-for="book in author.books" :key="book.id">
+		<ul v-for="book in filterByProperty(getAllBooks, 'author_id', author.id)" :key="book.id">
 			<li><RouterLink :to="{ name: 'books.show', params: { id: book.id } }">{{ book.title }}</RouterLink></li>
 		</ul>
 	</li>

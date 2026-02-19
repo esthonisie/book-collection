@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import { fetchAuthors, getAllAuthors } from '@/domains/authors/store';
-import { sortByProperty } from '@/helpers/stateObject';
+import { isObjectEmpty, sortByProperty } from '@/helpers/stateObject';
 import ErrorMessage from '@/services/error/ErrorMessage.vue';
 import FormError from '@/services/error/FormError.vue';
 
-fetchAuthors();
+isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
 
 const props = defineProps({ book: Object });
 

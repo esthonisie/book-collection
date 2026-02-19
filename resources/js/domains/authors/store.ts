@@ -8,10 +8,6 @@ export const fetchAuthors = async () => {
 	await authorStore.actions.getAll();
 };
 
-export const fetchAuthor = async (id: number) => {
-	await authorStore.actions.getById(id);
-};
-
 export const createAuthor = async (newAuthor: Author) => {
 	await authorStore.actions.create(newAuthor);
 }

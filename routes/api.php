@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BookReviewController;
+use App\Http\Controllers\ReviewController;
 
 // Books
 Route::get('/books', [BookController::class, 'index']);
@@ -12,12 +12,12 @@ Route::post('/books', [BookController::class, 'store']);
 Route::put('/books/{book}', [BookController::class, 'update']);
 Route::delete('/books/{book}', [BookController::class, 'destroy']);
 
-// Book --> Reviews
-Route::get('/books/{book}/reviews', [BookReviewController::class, 'index']);
-Route::get('/reviews/{review}', [BookReviewController::class, 'show']);
-Route::post('/reviews', [BookReviewController::class, 'store']);
-Route::put('/reviews/{review}', [BookReviewController::class, 'update']);
-Route::delete('/reviews/{review}', [BookReviewController::class, 'destroy']);
+// Reviews
+Route::get('/reviews', [ReviewController::class, 'index']);
+Route::get('/reviews/{review}', [ReviewController::class, 'show']);
+Route::post('/reviews', [ReviewController::class, 'store']);
+Route::put('/reviews/{review}', [ReviewController::class, 'update']);
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
 
 // Authors
 Route::get('/authors', [AuthorController::class, 'index']);

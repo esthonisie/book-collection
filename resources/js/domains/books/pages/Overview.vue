@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { fetchBooks, getAllBooks, deleteBook } from '../store';
-import { sortByProperty } from '@/helpers/stateObject';
+import { getAllReviews, fetchReviews } from '@/domains/reviews/store';
+import { isObjectEmpty, sortByProperty } from '@/helpers/stateObject';
 import { shortenSummary } from '@/helpers/books';
 
-fetchBooks();
+isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
+// pre-load reviews
+isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 </script>
 
 <template>

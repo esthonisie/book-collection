@@ -9,3 +9,7 @@ export const filterByProperty = (object: {}, prop: string, matchWith: number | s
   const array = Object.values(object);
   return array.filter(el => el[prop] === matchWith);
 }
+
+export const isObjectEmpty = (object: {}) => {
+  return JSON.stringify(object) === "{}";
+};

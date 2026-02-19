@@ -1,16 +1,17 @@
 <script lang=ts setup>
 import { useRoute, useRouter } from 'vue-router';
 import Form from '../components/Form.vue';
-import { fetchAuthor, getAuthorById, updateAuthor } from '../store';
+import { fetchAuthors, getAuthorById, updateAuthor, getAllAuthors } from '../store';
+import { isObjectEmpty } from '@/helpers/stateObject';
 import type { Author } from '../types';
+
+isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
 
 const router = useRouter();
 
 const route = useRoute();
 const authorId = parseInt(route.params.id as string);
 const author = getAuthorById(authorId);
-
-fetchAuthor(authorId);
 
 const handleSubmit = async (data: Author) => {
 	try {

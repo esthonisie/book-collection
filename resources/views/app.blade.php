@@ -9,7 +9,7 @@
             rel="stylesheet" 
         />
         <title>Book Collection</title>
-        @vite(['resources/css/reset.css', 'resources/css/app.css', 'resources/js/main.ts'])
+        @vite(['resources/css/reset.css', 'resources/css/app.css', 'resources/js/app.ts'])
     </head>
     <body>
         <div id="app"></div>

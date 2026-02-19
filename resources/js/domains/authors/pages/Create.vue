@@ -3,12 +3,7 @@ import Form from '../components/Form.vue';
 import { createAuthor } from '../store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { destroyMessage, destroyErrors } from '@/services/error'; 
 import type { Author } from '../types';
-
-// reset general error message and errorbag message
-destroyMessage();
-destroyErrors();
 
 const router = useRouter();
 

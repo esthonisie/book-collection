@@ -1,16 +1,17 @@
 <script lang=ts setup>
 import { useRoute, useRouter } from 'vue-router';
 import Form from '../components/Form.vue';
-import { fetchReview, getReviewById, updateReview } from '../store';
+import { fetchReviews, getReviewById, updateReview, getAllReviews } from '../store';
+import { isObjectEmpty } from '@/helpers/stateObject';
 import type { Review } from '../types';
+
+isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 
 const router = useRouter();
 
 const route = useRoute();
 const reviewId = parseInt(route.params.id as string);
 const review = getReviewById(reviewId);
-
-fetchReview(reviewId);
 
 const handleSubmit = async (data: Review) => {
 	try {
@@ -26,7 +27,6 @@ const btnText = "Edit Review";
 
 <template>
 <div>
-  <h2>Edit Review</h2>
   <Form v-if="review" :review="review" @submit="handleSubmit">{{ btnText }}</Form>
 </div>
 </template>
