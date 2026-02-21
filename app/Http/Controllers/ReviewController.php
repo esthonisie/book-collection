@@ -15,9 +15,8 @@ class ReviewController extends Controller
     }
 
     public function store(StoreReviewRequest $request) {
-        Review::create($request->validated());
-
-        return ReviewResource::collection(Review::all());
+        $review = Review::create($request->validated());
+        return new ReviewResource($review);
     }
 
     public function show(Review $review) {
@@ -26,8 +25,7 @@ class ReviewController extends Controller
 
     public function update(UpdateReviewRequest $request, Review $review) {
         $review->update($request->validated());
-
-        return ReviewResource::collection(Review::all());
+        return new ReviewResource($review);
     }
 
     public function destroy(Review $review) {

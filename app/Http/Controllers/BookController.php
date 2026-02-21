@@ -15,9 +15,8 @@ class BookController extends Controller
     }
 
     public function store(StoreBookRequest $request) {
-        Book::create($request->validated());
-
-        return BookResource::collection(Book::with(['author:id,first_name,last_name'])->get());
+        $book = Book::create($request->validated());
+        return new BookResource($book);
     }
 
     public function show(Book $book)
@@ -27,8 +26,7 @@ class BookController extends Controller
 
     public function update(UpdateBookRequest $request, Book $book) {
         $book->update($request->validated());
-
-        return BookResource::collection(Book::with(['author:id,first_name,last_name'])->get());
+        return new BookResource($book);
     }
 
     public function destroy(Book $book) {
