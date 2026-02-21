@@ -13,7 +13,7 @@ const bookId = parseInt(route.params.id as string);
 
 const review = ref({
 	body: '',
-	book_id: `${bookId}`,
+	book_id: bookId,
 	username: userName(),
 });
 
