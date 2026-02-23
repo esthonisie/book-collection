@@ -13,6 +13,8 @@ import HeaderSection from './components/HeaderSection.vue'
 
 <style scoped>
 .main-container {
+  display: flex;
+  flex-direction: column;
   width: 100vw;
 }
 

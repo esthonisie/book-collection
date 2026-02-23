@@ -10,6 +10,11 @@ export const filterByProperty = (object: {}, prop: string, matchWith: number | s
   return array.filter(el => el[prop] === matchWith);
 }
 
+export const checkSome = (object: {}, prop: string, matchWith: number | string) => {
+  const array = Object.values(object);
+  return array.some(el => el[prop] === matchWith);
+}
+
 // export const isObjectEmpty = (object: {}) => {
 //   return JSON.stringify(object) === "{}";
 // };
