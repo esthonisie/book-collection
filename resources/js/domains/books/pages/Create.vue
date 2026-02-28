@@ -1,5 +1,6 @@
 <script lang=ts setup>
 import Form from '../components/Form.vue';
+import { updateBooksCount } from '@/helpers/authors';
 import { createBook } from '../store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -16,6 +17,7 @@ const book = ref({
 const handleSubmit = async (data: Book) => {
 	try {
 		await createBook(data);
+		updateBooksCount(data.author_id);
 		router.push({name: 'books.overview'});
 	} catch(error) {
 		console.log('Error: ' + error);

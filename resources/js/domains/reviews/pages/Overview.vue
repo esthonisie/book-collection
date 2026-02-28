@@ -40,7 +40,7 @@ const reviews = () => {
       <RouterLink :to="{ name: 'reviews.edit', params: { id: review?.id } }" class="edit-link">
         Edit
       </RouterLink> |
-      <button @click="deleteReview(review?.id)" class="delete-link">Delete</button>
+      <button @click="deleteReview(review?.id)" class="delete-link">x</button>
       <div class="review">{{ review?.body }}</div>
     </li>
   </ul>
@@ -53,7 +53,6 @@ const reviews = () => {
 }
 
 ul {
-  list-style: none;
   padding: 0;
 }
 
@@ -97,6 +96,7 @@ a {
 
 .delete-link {
   color: hsl(0, 70%, 64%);
+  font-weight: 700;
   margin-left: 3px;
   cursor: pointer;
 }

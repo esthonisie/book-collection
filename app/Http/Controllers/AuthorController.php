@@ -12,7 +12,9 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class AuthorController extends Controller
 {
     public function index() {
-        return AuthorResource::collection(Author::all());
+        $authors = Author::withCount('books')->with('books')->get();
+        return AuthorResource::collection($authors);
+        // return AuthorResource::collection(Author::all());
     }
 
     public function store(StoreAuthorRequest $request) {

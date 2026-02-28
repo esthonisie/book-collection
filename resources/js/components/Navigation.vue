@@ -46,6 +46,8 @@ a {
   font-size: var(--font-size-14);
   font-weight: 700;
   text-transform: uppercase;
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
   margin-top: 10px;
   padding: 6px 8px;
 }

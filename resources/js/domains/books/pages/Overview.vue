@@ -3,6 +3,7 @@ import { fetchBooks, getAllBooks, deleteBook } from '../store';
 import { getAllReviews, fetchReviews } from '@/domains/reviews/store';
 import { isObjectEmpty, sortByProperty } from '@/helpers/stateObject';
 import { shortenSummary } from '@/helpers/books';
+import { updateBooksCount } from '@/helpers/authors';
 
 isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
 // pre-load reviews
@@ -29,7 +30,7 @@ isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 		<RouterLink :to="{ name: 'books.edit', params: { id: book.id } }" class="edit-link">
 			Edit
 		</RouterLink>
-		<p @click="deleteBook(book.id)" class="delete-link">x</p>
+		<p @click="deleteBook(book.id); updateBooksCount(book.author_id)" class="delete-link">x</p>
 	</div>
 </div>
 </template>

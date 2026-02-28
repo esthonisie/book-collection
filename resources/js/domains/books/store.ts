@@ -10,15 +10,15 @@ export const fetchBooks = async () => {
 
 export const createBook = async (newBook: Book) => {
 	await bookStore.actions.create(newBook);
-}
+};
 
 export const updateBook = async (id: number, updatedBook: Book) => {
 	await bookStore.actions.update(id, updatedBook);
-}
+};
 
 export const deleteBook = async (id: number) => {
 	await bookStore.actions.delete(id);
-}
+};
 
 // getters
 export const getAllBooks = bookStore.getters.all;
