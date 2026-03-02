@@ -15,13 +15,12 @@ import HeaderSection from './components/HeaderSection.vue'
 .main-container {
   display: flex;
   flex-direction: column;
-  width: 100vw;
 }
 
 .content-container {
   max-width: 1200px;
   min-width: 920px;
-  padding: 36px 14px 60px;
+  padding: 24px 14px 46px;
   margin: 0 auto;
 }
 </style>

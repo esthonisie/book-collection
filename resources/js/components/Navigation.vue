@@ -1,10 +1,10 @@
 <template>
 <nav>
   <div class="nav-links-container">
-    <RouterLink 
+    <!-- <RouterLink 
       active-class="active" 
       :to="{ name: 'home' }">Home
-    </RouterLink>
+    </RouterLink> -->
     <RouterLink 
       active-class="active" 
       :to="{ name: 'books.overview' }">View All Books
@@ -29,7 +29,6 @@
 nav {
   background-color: var(--main-color-dark);
   box-shadow: 0 16px 20px var(--main-color-dark);
-  width: 100%;
 }
 
 .nav-links-container {

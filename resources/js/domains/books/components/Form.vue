@@ -19,19 +19,19 @@ const handleSubmit = () => emit('submit', form.value);
 <template>
 
 <form @submit.prevent="handleSubmit">
-  <div class="error"><ErrorMessage /></div>
+  <div class="error"><ErrorMessage  />&#160;</div>
 
   <label for="title">Title:</label>
   <input id="title" v-model="form.title" type="text" required />
-  <div class="error"><FormError name="title" /></div>
+  <div class="error"><FormError name="title" />&#160;</div>
 
   <label for="summary">Summary:</label>
   <textarea id="summary" v-model="form.summary" required></textarea>
-  <div class="error"><FormError name="summary" /></div>
+  <div class="error"><FormError name="summary" />&#160;</div>
 
-  <label for="author"></label>
+  <label for="author">Select an author:</label>
   <select id="author" v-model="form.author_id" required>
-    <option v-bind:value="null" disabled hidden>Select an author:</option>
+    <option v-bind:value="null" disabled hidden>your choice...</option>
     <option v-for="author in sortByProperty(getAllAuthors, 'last_name')" :key="author.id" :value="author.id">
       {{ author.name }}
     </option>
@@ -40,35 +40,3 @@ const handleSubmit = () => emit('submit', form.value);
   <button type="submit"><slot>submit</slot></button>
 </form>
 </template>
-
-<style scoped>
-.error {
-  color:rgb(226, 61, 43);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid;
-  padding: 20px;
-  width: 500px;
-  margin: 0 auto;
-}
-
-label {
-  margin-bottom: 6px;
-}
-
-textarea {
-  padding: 15px;
-  height: 180px;
-}
-
-button {
-  text-align: center;
-  border: 1px solid;
-  width: fit-content;
-  padding: 8px 12px;
-  margin-top: 10px;
-}
-</style>

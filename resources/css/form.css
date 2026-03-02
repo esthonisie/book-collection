@@ -1,0 +1,60 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 494px;
+  margin: 0 auto;
+}
+
+label, .error {
+  font-size: var(--font-size-14);
+  text-transform: uppercase;
+}
+
+label {
+  color: hsl(35, 30%, 75%);
+  font-weight: 700;
+}
+
+.error {
+  display: flex;
+  color: hsl(0, 70%, 64%);
+}
+
+input, textarea, select {
+  color: hsl(60, 10%, 95%);
+	font-family: Georgia, Times, 'Times New Roman', serif;
+  background-color: var(--main-color-dark);
+  border: 1px solid hsl(175, 52%, 44%);
+}
+
+input {
+  padding: 6px 14px 8px;
+}
+
+textarea {
+  padding: 10px 14px 12px;
+  height: 180px;
+}
+
+select {
+  padding: 6px 14px 8px;
+  margin-bottom: 20px;
+}
+
+select:focus {
+  outline: 2px solid hsl(175, 52%, 44%);
+}
+
+form button {
+  color: hsl(175, 52%, 44%);
+  text-transform: uppercase;
+  text-align: center;
+  width: fit-content;
+  border: 1px solid;
+  padding: 8px 12px;
+  margin-top: 6px;
+}
+
+form button:hover {
+  outline: 2px solid hsl(175, 52%, 44%);
+}

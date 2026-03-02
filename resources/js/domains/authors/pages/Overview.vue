@@ -5,7 +5,7 @@ import { fetchAuthors, getAllAuthors, deleteAuthor } from '../store';
 import { fetchBooks, getAllBooks } from '@/domains/books/store';
 import { isObjectEmpty, sortByProperty } from '@/helpers/stateObject';
 import type { Author } from '@/domains/authors/types';
-// import ErrorMessage from '@/services/error/ErrorMessage.vue';
+import ErrorMessage from '@/services/error/ErrorMessage.vue';
 
 isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
 isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
@@ -34,7 +34,7 @@ const submitDelete = async (authorId: number) => {
 </script>
 
 <template>
-<!-- <ErrorMessage /> -->
+<div class="error"><ErrorMessage  />&#160;</div>
 <div class="main-container">
 
 	<div class="main-left-container">
@@ -78,7 +78,6 @@ const submitDelete = async (authorId: number) => {
 .main-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	width: 100%;
 }
 
 .main-left-container {

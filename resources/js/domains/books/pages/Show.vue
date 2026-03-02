@@ -44,7 +44,7 @@ const book = getBookById(bookId);
   color: hsl(60, 10%, 88%);
   display: grid;
   grid-template-columns: 2fr 4fr;
-  width: 100%;
+  margin-top: 1.75rem;
 }
 
 /* -------------------------------------------------------- */

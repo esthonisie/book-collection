@@ -4,13 +4,24 @@ import { getAllReviews, fetchReviews } from '@/domains/reviews/store';
 import { getAllAuthors, fetchAuthors } from '@/domains/authors/store';
 import { isObjectEmpty } from '@/helpers/stateObject';
 
+// pre-loader
 isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
-// pre-load reviews and authors
 isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
 </script>
 
 <template>
-<p>Discover This Book:</p> 
-<button>random book button</button>
+<div class="main-container">
+  <p>Welcome!</p> 
+</div>
 </template>
+
+<style scoped>
+.main-container {
+  color: hsl(35, 50%, 65%);
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 1.75rem;
+}
+</style>

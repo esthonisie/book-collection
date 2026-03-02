@@ -98,7 +98,6 @@ a {
   color: hsl(0, 70%, 64%);
   font-weight: 700;
   margin-left: 3px;
-  cursor: pointer;
 }
 
 .review {

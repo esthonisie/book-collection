@@ -30,7 +30,7 @@ isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 		<RouterLink :to="{ name: 'books.edit', params: { id: book.id } }" class="edit-link">
 			Edit
 		</RouterLink>
-		<p @click="deleteBook(book.id); updateBooksCount(book.author_id)" class="delete-link">x</p>
+		<button @click="deleteBook(book.id); updateBooksCount(book.author_id)" class="delete-link">x</button>
 	</div>
 </div>
 </template>
@@ -39,8 +39,8 @@ isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 .main-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	width: 100%;
 	gap: 14px;
+	margin-top: 1.75rem;
 }
 
 .book-container {
@@ -60,7 +60,6 @@ isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
   font-size: var(--font-size-14);
   text-transform: uppercase;
   font-weight: 700;
-	cursor: pointer;
 }
 
 .edit-link {

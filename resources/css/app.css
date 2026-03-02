@@ -9,8 +9,12 @@
   --main-color-dark: #1b1d1d;
 }
 
+*:focus-visible {
+  outline: 2px solid hsl(175, 52%, 44%);
+}
+
 html {
   font-family: 'Figtree', 'Tamoma', 'Geneva', sans-serif;
   background-color: var(--main-color-dark);
-  color: #f7cdff;
+  scrollbar-gutter: stable both-edges;
 }
