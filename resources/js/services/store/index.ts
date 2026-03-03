@@ -27,11 +27,6 @@ export const storeModuleFactory = (moduleName: string) => {
       if (!data) return;
       setters.setAll(data);
     },
-    getById: async (id: number) => {
-      const { data } = await getRequest(`${moduleName}/${id}`);
-      if (!data) return;
-      setters.setById(data);
-    },
     create: async (item) => {
       const { data } = await postRequest(moduleName, item);
       if (!data) return;

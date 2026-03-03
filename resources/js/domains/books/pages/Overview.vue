@@ -30,7 +30,7 @@ isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 		<RouterLink :to="{ name: 'books.edit', params: { id: book.id } }" class="edit-link">
 			Edit
 		</RouterLink>
-		<button @click="deleteBook(book.id); updateBooksCount(book.author_id)" class="delete-link">x</button>
+		<button @click="deleteBook(book.id); updateBooksCount(book.author_id, false)" class="delete-link">x</button>
 	</div>
 </div>
 </template>

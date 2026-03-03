@@ -21,7 +21,7 @@ const handleSubmit = async (data: Book) => {
 
 		if (oldAuthorId !== newAuthorId) {
 			await updateBook(bookId, data);
-			updateBooksCount(oldAuthorId);
+			updateBooksCount(oldAuthorId, false);
 			updateBooksCount(newAuthorId);
 		} else {
 			await updateBook(bookId, data);

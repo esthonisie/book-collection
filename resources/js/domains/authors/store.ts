@@ -1,15 +1,11 @@
 import { storeModuleFactory } from '@/services/store';
 import type { Author } from './types';
 
-const authorStore = storeModuleFactory('authors');
+export const authorStore = storeModuleFactory('authors');
 
 // actions
 export const fetchAuthors = async () => {
 	await authorStore.actions.getAll();
-};
-
-export const fetchAuthor = async (id: number) => {
-	await authorStore.actions.getById(id);
 };
 
 export const createAuthor = async (newAuthor: Author) => {
