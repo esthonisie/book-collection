@@ -1,19 +1,28 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { fetchAuthors, getAllAuthors } from '@/domains/authors/store';
+import type { Author } from '@/domains/authors/types';
+import type { Book } from '@/domains/books/types';
+import type { New } from '@/services/store/types';
 import { isObjectEmpty, sortByProperty } from '@/helpers/stateObject';
 import ErrorMessage from '@/services/error/ErrorMessage.vue';
 import FormError from '@/services/error/FormError.vue';
 
 isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
 
-const props = defineProps({ book: Object });
+const props = defineProps<{ book: New<Book> }>();
 
-const emit = defineEmits(['submit']);
+const emit = defineEmits<{
+    (event: 'submit', data: New<Book>): void;
+}>();
 
 const form = ref({ ...props.book });
 
 const handleSubmit = () => emit('submit', form.value);
+
+const authors = (): Author[] => {
+	return sortByProperty(getAllAuthors.value, 'last_name') as Author[];
+}
 </script>
 
 <template>
@@ -31,8 +40,8 @@ const handleSubmit = () => emit('submit', form.value);
 
   <label for="author">Select an author:</label>
   <select id="author" v-model="form.author_id" required>
-    <option v-bind:value="null" disabled hidden>your choice...</option>
-    <option v-for="author in sortByProperty(getAllAuthors, 'last_name')" :key="author.id" :value="author.id">
+    <option :value="NaN" disabled hidden>your choice...</option>
+    <option v-for="author in authors()" :key="author.id" :value="author.id">
       {{ author.name }}
     </option>
   </select>

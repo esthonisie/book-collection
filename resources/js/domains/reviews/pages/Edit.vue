@@ -4,6 +4,7 @@ import Form from '../components/Form.vue';
 import { fetchReviews, getReviewById, updateReview, getAllReviews } from '../store';
 import { isObjectEmpty } from '@/helpers/stateObject';
 import type { Review } from '../types';
+import type { Updatable } from '@/services/store/types';
 
 isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 
@@ -13,7 +14,7 @@ const route = useRoute();
 const reviewId = parseInt(route.params.id as string);
 const review = getReviewById(reviewId);
 
-const handleSubmit = async (data: Review) => {
+const handleSubmit = async (data: Updatable<Review>) => {
 	try {
 		await updateReview(reviewId, data);
     router.push({name: 'books.show', params: { id: review.value.book_id }});

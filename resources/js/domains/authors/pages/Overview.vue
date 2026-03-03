@@ -53,7 +53,7 @@ const submitDelete = async (authorId: number) => {
 				</template>
 
 				<template v-else>
-				<button @click="grabInfo(author.id, author.name)">
+				<button @click="grabInfo(author.id, author.name as string)">
 					{{ author.name }} 
 					<span v-if="author.books_count === 1" class="book">&#40;1 book&#41;</span>
 					<span v-else class="book">&#40;{{ author.books_count }} books&#41;</span>

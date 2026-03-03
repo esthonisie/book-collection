@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getAllReviews, fetchReviews, deleteReview } from '../store';
+import type { Review } from '@/domains/reviews/types';
 import { isObjectEmpty, filterByProperty, checkSome } from '@/helpers/stateObject';
 import { sortByIdDesc } from '@/helpers/reviews';
 import { useRoute } from 'vue-router';
@@ -13,9 +14,9 @@ const isReviews = () => {
   return checkSome(getAllReviews.value, 'book_id', bookId);
 }
 
-const reviews = () => {
-  const arr = filterByProperty(getAllReviews.value, 'book_id', bookId);
-  return sortByIdDesc(arr, 'id');
+const reviews = (): Review[] => {
+  const arr = filterByProperty(getAllReviews.value, 'book_id', bookId) as Review[];
+  return sortByIdDesc(arr as [], 'id');
 }
 </script>
 

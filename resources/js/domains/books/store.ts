@@ -1,18 +1,19 @@
 import { storeModuleFactory } from '@/services/store';
 import type { Book } from './types';
+import type { New, Updatable } from '@/services/store/types';
 
-const bookStore = storeModuleFactory('books');
+const bookStore = storeModuleFactory<Book>('books');
 
 // actions
 export const fetchBooks = async () => {
 	await bookStore.actions.getAll();
 };
 
-export const createBook = async (newBook: Book) => {
+export const createBook = async (newBook: New<Book>) => {
 	await bookStore.actions.create(newBook);
 };
 
-export const updateBook = async (id: number, updatedBook: Book) => {
+export const updateBook = async (id: number, updatedBook: Updatable<Book>) => {
 	await bookStore.actions.update(id, updatedBook);
 };
 

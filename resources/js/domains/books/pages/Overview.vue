@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { fetchBooks, getAllBooks, deleteBook } from '../store';
+import type { Book } from '@/domains/books/types';
 import { getAllReviews, fetchReviews } from '@/domains/reviews/store';
 import { isObjectEmpty, sortByProperty } from '@/helpers/stateObject';
 import { shortenSummary } from '@/helpers/books';
@@ -8,13 +9,17 @@ import { updateBooksCount } from '@/helpers/authors';
 isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
 // pre-load reviews
 isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
+
+const books = (): Book[] => {
+	return sortByProperty(getAllBooks.value, 'title') as Book[];
+}
 </script>
 
 <template>
 <div class="main-container">
 	<div 
 		class="book-container" 
-		v-for="book in sortByProperty(getAllBooks, 'title')" 
+		v-for="book in books()" 
 		:key="book.id"
 	>
 		<div>

@@ -5,16 +5,17 @@ import { createBook } from '../store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { Book } from '../types';
+import type { New } from '@/services/store/types';
 
 const router = useRouter();
 
 const book = ref({
 	title: '',
 	summary: '',
-	author_id: null
+	author_id: NaN
 });
 
-const handleSubmit = async (data: Book) => {
+const handleSubmit = async (data: New<Book>) => {
 	try {
 		await createBook(data);
 		updateBooksCount(data.author_id);

@@ -1,11 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
+import type { Author } from '../types';
+import type { New } from '@/services/store/types';
 import ErrorMessage from '@/services/error/ErrorMessage.vue';
 import FormError from '@/services/error/FormError.vue';
 
-const props = defineProps({ author: Object });
+const props = defineProps<{ author: New<Author> }>();
 
-const emit = defineEmits(['submit']);
+const emit = defineEmits<{
+    (event: 'submit', data: New<Author>): void;
+}>();
 
 const form = ref({ ...props.author });
 

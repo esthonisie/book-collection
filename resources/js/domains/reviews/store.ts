@@ -1,18 +1,19 @@
 import { storeModuleFactory } from '@/services/store';
 import type { Review } from './types';
+import type { New, Updatable } from '@/services/store/types';
 
-const reviewStore = storeModuleFactory('reviews');
+const reviewStore = storeModuleFactory<Review>('reviews');
 
 // actions
 export const fetchReviews = async () => {
 	await reviewStore.actions.getAll();
 };
 
-export const createReview = async (newReview: Review) => {
+export const createReview = async (newReview: New<Review>) => {
 	await reviewStore.actions.create(newReview);
 };
 
-export const updateReview = async (id: number, updatedReview: Review) => {
+export const updateReview = async (id: number, updatedReview: Updatable<Review>) => {
 	await reviewStore.actions.update(id, updatedReview);
 };
 

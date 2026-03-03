@@ -1,11 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
+import type { Review } from '../types';
+import type { New } from '@/services/store/types';
 import ErrorMessage from '@/services/error/ErrorMessage.vue';
 import FormError from '@/services/error/FormError.vue';
 
-const props = defineProps({ review: Object });
+const props = defineProps<{ review: New<Review> }>();
 
-const emit = defineEmits(['submit']);
+const emit = defineEmits<{
+    (event: 'submit', data: New<Review>): void;
+}>();
 
 const form = ref({ ...props.review });
 

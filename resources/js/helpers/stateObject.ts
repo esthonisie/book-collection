@@ -1,22 +1,22 @@
 // helper functions for the state object, an object with nested objects
 
 export const sortByProperty = (object: {}, prop: string) => {
-  const array = Object.values(object);
+  const array: { [key: string]: any }[] = Object.values(object);
   return array.sort((a, b) => a[prop].localeCompare(b[prop]));
 }
 
 export const filterByProperty = (object: {}, prop: string, matchWith: number | string) => {
-  const array = Object.values(object);
+  const array: { [key: string]: any }[] = Object.values(object);
   return array.filter(el => el[prop] === matchWith);
 }
 
 export const filterById = (object: {}, id: number) => {
-  const array = Object.values(object);
+  const array: { [key: string]: number }[] = Object.values(object);
   return array.filter(el => el['id'] === id);
 }
 
 export const checkSome = (object: {}, prop: string, matchWith: number | string) => {
-  const array = Object.values(object);
+  const array: { [key: string]: any }[] = Object.values(object);
   return array.some(el => el[prop] === matchWith);
 }
 
@@ -30,6 +30,7 @@ and than creates a new author/book/review.
  */
 export const isObjectEmpty = (object: {}) => {
   //Object.keys(object).length;
+  //no need to know the total length, when it's 2 exit the loop
   let count = 0;
 
   for (let key in object) {

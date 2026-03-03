@@ -4,6 +4,7 @@ import Form from '../components/Form.vue';
 import { fetchAuthors, getAuthorById, updateAuthor, getAllAuthors } from '../store';
 import { isObjectEmpty } from '@/helpers/stateObject';
 import type { Author } from '../types';
+import type { Updatable } from '@/services/store/types';
 
 isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
 
@@ -13,7 +14,7 @@ const route = useRoute();
 const authorId = parseInt(route.params.id as string);
 const author = getAuthorById(authorId);
 
-const handleSubmit = async (data: Author) => {
+const handleSubmit = async (data: Updatable<Author>) => {
 	try {
 		await updateAuthor(authorId, data);
     router.push({ name: 'authors.overview' });

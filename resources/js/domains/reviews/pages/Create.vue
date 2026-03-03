@@ -5,6 +5,7 @@ import { createReview } from '../store';
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import type { Review } from '../types';
+import type { New } from '@/services/store/types';
 
 const router = useRouter();
 
@@ -17,7 +18,7 @@ const review = ref({
 	username: userName(),
 });
 
-const handleSubmit = async (data: Review) => {
+const handleSubmit = async (data: New<Review>) => {
 	try {
 		await createReview(data);
 		router.push({name: 'books.show', params: { id: bookId }});

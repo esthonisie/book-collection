@@ -5,6 +5,7 @@ import { fetchBooks, getBookById, updateBook, getAllBooks } from '../store';
 import { isObjectEmpty } from '@/helpers/stateObject';
 import { updateBooksCount } from '@/helpers/authors';
 import type { Book } from '../types';
+import type { Updatable } from '@/services/store/types';
 
 isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
 
@@ -14,7 +15,7 @@ const route = useRoute();
 const bookId = parseInt(route.params.id as string);
 const book = getBookById(bookId);
 
-const handleSubmit = async (data: Book) => {
+const handleSubmit = async (data: Updatable<Book>) => {
 	try {
 		const oldAuthorId = book.value.author_id;
 		const newAuthorId = data.author_id;

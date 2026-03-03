@@ -4,6 +4,7 @@ import { createAuthor } from '../store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { Author } from '../types';
+import type { New } from '@/services/store/types';
 
 const router = useRouter();
 
@@ -12,7 +13,7 @@ const author = ref({
 	last_name: ''
 });
 
-const handleSubmit = async (data: Author) => {
+const handleSubmit = async (data: New<Author>) => {
 	try {
 		await createAuthor(data);
 		router.push({name: 'authors.overview'});
