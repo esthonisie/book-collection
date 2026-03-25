@@ -5,6 +5,7 @@ import type { New, Updatable } from '@/services/store/types';
 const bookStore = storeModuleFactory<Book>('books');
 
 // actions
+// TODO: vraag: waarom extra wrappers voor store functies?
 export const fetchBooks = async () => {
 	await bookStore.actions.getAll();
 };

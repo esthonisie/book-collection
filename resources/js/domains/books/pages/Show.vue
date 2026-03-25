@@ -4,6 +4,8 @@ import { cicero } from '../components/dummy-text';
 import { isObjectEmpty } from '@/helpers/stateObject';
 import { useRoute } from 'vue-router';
 // reviews
+// TODO: gebruik evt. een alias als: ReviewOverview, zodat duidelijk is welke overview hier bedoeld wordt.
+// verder zou ik het niet als vue pagina gebruiken, maar er een component van maken, omdat je het ook als component toepast
 import Overview from '@/domains/reviews/pages/Overview.vue';
 
 isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;

@@ -16,6 +16,7 @@ class Author extends Model
      /** @use HasFactory<\Database\Factories\AuthorFactory> */
     use HasFactory;
 
+    // TODO: dit zou ik hernoemen naar getFullNameAttribute
     public function getNameAttribute(): string
     {
         return $this->first_name.' '.$this->last_name;

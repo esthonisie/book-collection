@@ -5,6 +5,7 @@ import { getAllAuthors, fetchAuthors } from '@/domains/authors/store';
 import { isObjectEmpty } from '@/helpers/stateObject';
 
 // pre-loader
+// TODO: vraag: wat is de toegevoegde waarde van de isObjectEmpty functie, als je altijd alle data inlaadt zoals hier onder gebeurt?
 isObjectEmpty(getAllBooks.value) ? fetchBooks() : null;
 isObjectEmpty(getAllReviews.value) ? fetchReviews() : null;
 isObjectEmpty(getAllAuthors.value) ? fetchAuthors() : null;
